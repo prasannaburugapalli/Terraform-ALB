@@ -1,0 +1,12 @@
+resource "aws_instance" "Alserver_pub" {
+subnet_id = aws_subnet.al_pubsub.id
+security_groups = [aws_security_group.AL_pub_sg.id]
+  ami           = var.ami
+  instance_type = var.instance_type
+  key_name      = var.key_name
+   count = 2
+  tags = {
+    Name = "ALserver_pub-${count.index}"
+  }
+}
+
